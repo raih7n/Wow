@@ -17,6 +17,7 @@
 #define EMIT(a) __asm __emit (a)
 #define REX_W EMIT(0x48) __asm
 
+// change the cs register to execute x64 code
 #define X64_Start() \
     { \
     EMIT(0x6A) EMIT(0x33)                        /*  push   0x33             */ \
@@ -25,6 +26,7 @@
     EMIT(0xCB)                                   /*  retf                   */  \
     }
 
+// then change it back
 #define X64_End() \
     { \
     EMIT(0xE8) EMIT(0) EMIT(0) EMIT(0) EMIT(0)                                  /*  call   $+5                   */  \
